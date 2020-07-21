@@ -169,6 +169,11 @@ export class Slider implements OnDestroy,ControlValueAccessor {
         if(!this.sliderHandleClick) {
             this.updateDomData();
             this.handleChange(event);
+            if (!this.range) {
+                this.onSlideEnd.emit({originalEvent: event, values: this.values});
+            } else {
+                this.onSlideEnd.emit({originalEvent: event, value: this.value});
+            }
         }
         
         this.sliderHandleClick = false;
